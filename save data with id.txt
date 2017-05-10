@@ -1,0 +1,35 @@
+
+
+***controller***
+public function save() {
+        $projectname = $this->input->post('pname');
+        $projectid = $this->milestonemodel->get_projectid($projectname);
+        foreach ($projectid as $value) {
+            $pid = $value['pid'];
+        }
+
+        $this->milestonemodel->add_new_milestone($pid);
+        redirect('Milestonecontroller/viewmilestone');
+    }
+
+***model***
+
+public function get_projectid($projectname){
+		 
+		$query =  $this->db->get_where('project', array('pname' => $projectname));
+        return $query->result_array(); 
+		 
+	 }
+
+public function add_new_milestone($pid){
+
+        $data =  array(
+            'mname'         =>$this->input->post('mname'),
+            'mdescription'  =>$this->input->post('mdescription'),
+            'pname'         =>$this->input->post('pname'),
+            'sdate'         =>date('Y-m-d', strtotime($this->input->post('sdate'))),
+            'edate'         =>date('Y-m-d', strtotime($this->input->post('edate'))),
+			'pid'			=>$pid
+        );
+        return $this->db->insert('milestone',$data); 
+    }

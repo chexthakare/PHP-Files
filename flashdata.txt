@@ -1,0 +1,14 @@
+/** view* */
+
+<div class="row">
+	<div>
+	    <?php if($this->session->flashdata('message')){?>
+	      <div class="alert alert-success">      
+	        <?php echo $this->session->flashdata('message')?>
+	      </div> <?php } ?>
+	</div>
+</div>
+
+/** controller **/
+
+ $this->session->set_flashdata('message', 'This Email Already Registered With System');
