@@ -11,27 +11,34 @@ table, th, td {
 <table table style="width:100%">
     <?php 
         $j = 0;
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 5; $i++) { 
           
          if($j % 2 == 0){
-          echo '<tr>';
+            if($j == 4){
+
+              echo '<tr><td>'. $i . '</td></tr>';
+
+            } else {
           ?>
           
-            <td><?php echo $i; ?></td>
+            <?php 
+              echo '<tr><td>'. $i . '</td>'; 
+              ?>
           
           <?php
+        }
          } else {
+
           ?>
           
-            <td><?php echo $i; ?></td>
+            <?php echo '<td>'. $i . '</td>'; ?>
           </tr>
           <?php
+
          }
-        $j++;
+        $j++; }
     ?>
-  
-  
-  <?php } ?>
+
 </table>
 
 </body>
