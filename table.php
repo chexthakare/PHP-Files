@@ -1,3 +1,4 @@
+/* by using for */
 <!DOCTYPE html>
 <html>
 <style>
