@@ -1,14 +1,15 @@
+	<!-------------------------------- facebook --------------------------------------------->
 	
-	/*place content in header******************************************************
+	/*place content in header***************************************************************
 	<meta property="og:site_name" content="Kamat Yatriniwas"/>
 	<meta property="og:title" content="Kamat Yatriniwas | Blog"/>
 	<meta property="og:description" content=""/>
 	<meta property="og:image" content="http://hdtdemo7.tk/chetan/kamat/assets/img/Kamat_logo.png">
 	<meta property="og:url" content="http://hdtdemo7.tk/chetan/kamat/blog_post.php">
 	<meta property="og:type" content="blog"/>
-	********************************************************************************/
+	*****************************************************************************************/
 	
-	/*sharing **********************************************************************
+	/*sharing *******************************************************************************
 	facebook Image:
 	https://developers.facebook.com/docs/sharing/best-practices#precaching
 		
@@ -17,12 +18,26 @@
 	
 	shaing over facebook, thumble preview
 	https://developers.facebook.com/tools/debug/sharing
-	********************************************************************************/
+	******************************************************************************************/
 		
 	/*for creating url short dynamically*********************************************
 	1. https://bdhacker.wordpress.com/2010/03/30/dynamically-use-bitly-in-your-site-easiest-way/
 	2. https://bitly.com/
 	3. https://developers.google.com/url-shortener/v1/getting_started
-	********************************************************************************/
+	*****************************************************************************************
+	<!-------------------------------- facebook end ------------------------------------------>
 	
+	<!----------------------------------- twitter --------------------------------------------->
+	/*twitter Cards***************************************************************************
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@flickr" />
+	<meta name="twitter:title" content="Small Island Developing States Photo Submission" />
+	<meta name="twitter:description" content="View the album on Flickr." />
+	<meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
+	********************************************************************************/
+
+	/*validate before share content over twitter*********************************************
+	https://cards-dev.twitter.com/validator	
+	*****************************************************************************************/
+	<!----------------------------------- twitter end ------------------------------------------->
 	
