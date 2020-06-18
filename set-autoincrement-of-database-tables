@@ -1,0 +1,77 @@
+1. This function will work best in the codeigniter
+2. Setup your databse in the codeigniter 
+3. Mentioned your first column name in the if condition, if column name other than id or sr_no
+4. Paste this function in the Controller of codeigniter
+5. Make sure you have set the Primary key to your table then call this function from the url, Your id will set automatically.
+6. If you have any Query/Update regarding this function rise issue, will try to resolve them. 
+
+public function set_primary_id(){
+		/*********************** INSTRUCTIONS ***********************/
+		// 1. Please take the backup before running this query (STRONGLY RECOMMENDED)*
+		// 2. It is necessary to all the table have column name 'id' or 'sr_no'
+		// 3. If your column name is other than that id or sr_no then mentioned in the if condition 
+		//    eg. 'srno' 
+
+		$tables = $this->db->list_tables();
+		foreach ($tables as $table_name){
+		   	$fields = $this->db->field_data($table_name);
+		   	foreach ($fields as $field){
+			   	if($field->name =='id' || $field->name =='sr_no' ){
+				   	$query = $this->db->query("SHOW INDEXES FROM $table_name WHERE Key_name = 'Primary'");
+				   
+				   	if($query->num_rows() > 0){
+				   		
+				   		$query_2 = $this->db->query("SELECT `AUTO_INCREMENT` as increment FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'primary_key' AND TABLE_NAME = '$table_name'");
+
+				   		$query_2 = $query_2->row_array();
+				   		$increment = $query_2['increment'];
+
+				   		if(empty($increment)){
+				   			if($this->db->query("ALTER TABLE $table_name CHANGE $field->name $field->name int(11) NOT NULL AUTO_INCREMENT;")){
+						   		echo 'Auto Increment Set for <strong>'.$table_name.'</strong>';;
+						   		echo '<br>';
+						   	}else{
+						   		echo 'Auto Increment not set for <strong>'.$table_name.'</strong>';;
+						   		echo '<br>';
+						   	}
+				   		}else{
+				   			echo 'Auto Increment is already set for <strong>'.$table_name.'</strong>';
+				   			echo '<br>';
+				   		}
+
+				   	}else{
+				   		echo 'Primary key not set for <strong>'.$table_name.'</strong>';;
+					   	echo '<br>';
+				   	}
+
+		        }
+			}
+		}
+
+		$tables = $this->db->list_tables();
+		echo '<br>---------------------Table List--------------------------<br>';
+		$i = 1; foreach ($tables as $table_name){
+			echo $i++.'. '.$table_name.'<br>'; 
+		}
+		echo '------------------------------------------------------------------------------------------------<br>';
+		echo '1. List of the table where primary key is Set/Unset<br>';
+		echo '2. Table where primary key is not set are mentioned in <strong style="color:red;">Red</strong> rest are in <strong style="color:green">Green</strong><br>';
+		echo '------------------------------------------------------------------------------------------------<br>';
+		foreach ($tables as $table_name){
+			$fields = $this->db->field_data($table_name);
+		   	$j = 1; foreach ($fields as $field){
+			   	if($field->name =='id' || $field->name =='sr_no' ){
+				   	$query = $this->db->query("SHOW INDEXES FROM $table_name WHERE Key_name = 'Primary'");
+				   
+				   	if($query->num_rows() > 0){
+				   		
+				   		echo 'Primary Key Set For <strong style="color:green;">'.$table_name.'</strong>';
+				   		echo '<br>';
+				   	}else{
+				   		echo 'Primary Key Not Set For <strong style="color:red;">'.$table_name.'</strong>';
+				   		echo '<br>';
+				   	}
+				}
+			}
+		}
+	}
