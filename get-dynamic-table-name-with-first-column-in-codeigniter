@@ -1,0 +1,22 @@
+<?php 
+public function table_list(){
+  $tables = $this->db->list_tables();
+  foreach ($tables as $table){
+     echo 'table name : '.$table;
+     echo '<br>';
+     $result = $this->db->list_fields($table);
+     $i=0;
+      foreach($result as $field){
+        if($i == 0){
+          echo 'first column name : '.$field;
+          echo '<br>';
+        }
+        $i++;
+      }
+      $i = 0;
+      echo '<hr>';
+  }
+  exit;
+}
+
+?>
